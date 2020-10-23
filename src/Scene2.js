@@ -12,8 +12,9 @@ class Startscene {
   create() {
     this.add.image(400, 300, "sky");
     this.cursors = this.input.keyboard.createCursorKeys();
-    this.player = this.physics.add.sprite(100, 200, 'logo')
+    this.player = this.physics.add.sprite(800, 500, 'logo')
     this.player.body.collideWorldBounds = true;
+    
     console.log("THIS")
   }
 

@@ -1,29 +1,28 @@
 import Phaser from "phaser"
 import { useEffect } from "react"
 import React from 'react'
-import Startscene from './StartScene'
 
-const SapphireGame = () => {
+const SapphireGame = (props) => {
+
   useEffect(() => {
     const config = {
       type: Phaser.AUTO,
-      width: (window.innerWidth * 0.75),
-      height: (window.innerHeight * 0.75),
+      width: 1260,
+      height: 720,
       physics: {
         default: "arcade",
         arcade: {
-          gravity: { y: 200 },
+          // gravity: { y: 200 },
         },
       },
-      scene: [Startscene],
+      scene: [props.scene],
       parent: "myDIV",
       pixelArt: true
       }
 
     new Phaser.Game(config)
 
-  },[])
-  
+  },[props.scene])
   
 
   return (
