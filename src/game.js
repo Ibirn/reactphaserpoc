@@ -1,14 +1,13 @@
-import Phaser from "phaser"
-import { useEffect } from "react"
-import React from 'react'
+import Phaser from "phaser";
+import { useEffect } from "react";
+import React from "react";
 
 const SapphireGame = (props) => {
-
   useEffect(() => {
     const config = {
       type: Phaser.AUTO,
-      width: 1260,
-      height: 720,
+      width: 1024,
+      height: 768,
       physics: {
         default: "arcade",
         arcade: {
@@ -17,17 +16,15 @@ const SapphireGame = (props) => {
       },
       scene: [props.scene],
       parent: "myDIV",
-      pixelArt: true
-      }
+      pixelArt: true,
+    };
 
-    new Phaser.Game(config)
+    new Phaser.Game(config);
+  }, [props.scene]);
 
-  },[props.scene])
-  
+  return <div id="myDIV"></div>;
+};
 
-  return (
-    <div id="myDIV"></div>
-  )
-}
+export default SapphireGame;
 
-export default SapphireGame
+// figure out why it wants to move horizontal FOREVER?

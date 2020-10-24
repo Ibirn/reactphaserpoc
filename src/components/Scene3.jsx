@@ -1,14 +1,14 @@
-import React from 'react'
-import SapphireGame from '../game'
-import Scene2 from '../Scene2'
+import React from "react";
+import SapphireGame from "../game";
+import World2 from "../World2";
 
 const Scene3 = () => {
   return (
     <div>
       <p>SCENE 3? NEVER MET THE MAN</p>
-      <SapphireGame scene={Scene2} />
+      <SapphireGame scene={World2} />
     </div>
-  )
-}
+  );
+};
 
-export default Scene3
+export default Scene3;
