@@ -66,13 +66,11 @@ class World extends Phaser.Scene {
           this.player.y < 500
         ) {
           container.setVisible(true);
-        } else {
-          container.setVisible(false);
-        }
-        if (container.setVisible(true)) {
           if (this.cursors.space.isDown) {
             document.getElementById("scene-1").click();
           }
+        } else {
+          container.setVisible(false);
         }
       },
       null,
