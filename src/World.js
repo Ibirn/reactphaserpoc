@@ -15,12 +15,12 @@ class World extends Phaser.Scene {
       frameHeight: 16,
     });
 
-    // button test link:
+    // enter button test link:
     this.load.image("button", "assets/enter.png");
   }
 
   create() {
-    // MAP :
+    // MAP LOGIC:
     const map = this.add.tilemap("world");
     const tileset = map.addTilesetImage("overworld_proper", "overworld_proper");
     const collision = map
@@ -43,24 +43,19 @@ class World extends Phaser.Scene {
     this.player.body.collideWorldBounds = true;
     this.physics.add.collider(this.player, collision);
 
-    console.log(this.cursors);
-
     // Static EVENT GHOST Sprite:
     const eventGhost = this.physics.add.sprite(400, 496, "hulk").setScale(2);
     eventGhost.setVisible(false);
 
-    // Create Scene button:
+    // Create Scene button - set button to invisible until event:
     const button = this.add.image(0, 0, "button");
     const container = this.add.container(400, 450, [button]);
     container.setSize(button.width, button.height).setScale(0.3);
     container.setInteractive();
-    container.on("pointerup", function () {
-      document.getElementById("scene-1").click();
-    });
     container.setVisible(false);
 
-    // do something
-
+    // Interaction with Ghost sprite - brings up option to enter new scene based on location and use space bar to enter scene!
+    // Enter scene button appears on overlap with Ghost sprite!
     this.physics.add.overlap(
       this.player,
       eventGhost,
@@ -74,13 +69,11 @@ class World extends Phaser.Scene {
         } else {
           container.setVisible(false);
         }
-        // if (container.setVisible(true)) {
-        //   document.body.onkeyup = function (e) {
-        //     if (e.key === 32) {
-        //       document.getElementById("scene-1").click();
-        //     }
-        //   };
-        // }
+        if (container.setVisible(true)) {
+          if (this.cursors.space.isDown) {
+            document.getElementById("scene-1").click();
+          }
+        }
       },
       null,
       this

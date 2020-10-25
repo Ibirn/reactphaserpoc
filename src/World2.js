@@ -11,7 +11,7 @@ class World2 {
   }
 
   create() {
-    // MAP :
+    // MAP:
     const map = this.add.tilemap("world");
     const tileset = map.addTilesetImage("overworld_proper", "overworld_proper");
     const collision = map
