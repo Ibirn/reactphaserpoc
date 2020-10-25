@@ -4,23 +4,26 @@ import Scene2 from "./components/Scene2";
 import Scene3 from "./components/Scene3";
 import { BrowserRouter, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-
+// import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import allActions from "./reducers/actions";
 function App() {
-  //checking to see if updating state impacts the phaser map at all
-  //this does not affect the phaser map, but every time we navigate away, it does re-render the button count, which would not be ideal in the app because we want to have persistent state in our nav/game frame
-  const [counter, setCounter] = useState(0);
+  //trying redux
+  const counter = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
+
   return (
-    <div className="App">
-        <button onClick={() => setCounter((prev) => prev + 1)}>
+    <BrowserRouter>
+      <div className="App">
+        <button onClick={() => dispatch(allActions.incrementCounter())}>
           {counter}
         </button>
-      <BrowserRouter>
         <Navbar />
         <Route path="/scene1" component={Scene1} />
         <Route path="/scene2" component={Scene2} />
         <Route path="/scene3" component={Scene3} />
-      </BrowserRouter>
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

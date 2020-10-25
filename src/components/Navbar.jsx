@@ -7,15 +7,20 @@ const Navbar = () => {
       <nav>
         <ul>
           <li>
-            <Link to="/scene1">Sc1</Link>
+            {/* <Link to="/scene1">Sc1</Link> */}
+            <a href="/scene1">Sc1</a>
           </li>
           <li>
-            <Link id="scene-1" to="/scene2">
+            {/* <Link id="scene-1" to="/scene2">
               Sc2
-            </Link>
+            </Link> */}
+            <a id="scene-1" href="/scene2">
+              Sc2
+            </a>
           </li>
           <li>
-            <Link to="/scene3">Sc3</Link>
+            {/* <Link to="/scene3">Sc3</Link> */}
+            <a href="/scene3">Sc3</a>
           </li>
         </ul>
       </nav>
