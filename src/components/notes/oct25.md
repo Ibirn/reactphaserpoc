@@ -1,3 +1,5 @@
+# Persistent State issues when navigating between scenes 
+
 ## initial problem
 
 routing from phaser map to react components using   `<a>` tags within the navigation component was forcing state to reset via a re-render of the page
