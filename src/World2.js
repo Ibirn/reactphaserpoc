@@ -2,22 +2,40 @@
 
 class World2 {
   preload() {
-    this.load.setBaseURL("http://labs.phaser.io");
-    this.load.image("sky", "assets/skies/space3.png");
-    this.load.image("logo", "assets/sprites/phaser3-logo.png");
-    this.load.image("red", "assets/particles/red.png");
+    this.load.tilemapTiledJSON("world", "assets/sapphire.json");
+    this.load.image("overworld_proper", "assets/overworld_proper.png");
+    this.load.spritesheet("hulk", "assets/sumoHulk_spriteSheet.png", {
+      frameWidth: 16,
+      frameHeight: 16,
+    });
   }
 
   create() {
-    this.add.image(400, 300, "sky");
+    // MAP :
+    const map = this.add.tilemap("world");
+    const tileset = map.addTilesetImage("overworld_proper", "overworld_proper");
+    const collision = map
+      .createStaticLayer("Collision", tileset, 0, 0)
+      .setScale(2);
+    const grass = map.createStaticLayer("Grass", tileset, 0, 0).setScale(2);
+    const path = map.createStaticLayer("Path", tileset, 0, 0).setScale(2);
+    const buildings = map
+      .createStaticLayer("Building", tileset, 0, 0)
+      .setScale(2);
+    collision.setCollisionBetween(0, 2);
+    buildings.setDepth(0);
+    grass.setDepth(0);
+    path.setDepth(0);
+    collision.setDepth(0);
+    // PLAYER :
+    this.player = this.physics.add.sprite(400, 496, "hulk").setScale(2);
     this.cursors = this.input.keyboard.createCursorKeys();
-    this.player = this.physics.add.sprite(800, 500, "logo");
     this.player.body.collideWorldBounds = true;
-
-    console.log("THIS");
+    this.physics.add.collider(this.player, collision);
   }
 
   update() {
+    // CONTROLS :
     if (this.cursors.right.isDown) {
       this.player.body.setVelocityX(300);
     } else if (this.cursors.left.isDown) {
@@ -31,4 +49,5 @@ class World2 {
     }
   }
 }
+
 export default World2;

@@ -1,24 +1,28 @@
-//function to pass xy?
+import Phaser from "phaser";
 
-class World {
+class World extends Phaser.Scene {
+  constructor() {
+    super();
+    this.tempx = 0;
+    this.tempy = 0;
+  }
+
   preload() {
-    // this.load.image("background", "assets/world.png");
     this.load.tilemapTiledJSON("world", "assets/sapphire.json");
     this.load.image("overworld_proper", "assets/overworld_proper.png");
-    // 112, 16
     this.load.spritesheet("hulk", "assets/sumoHulk_spriteSheet.png", {
       frameWidth: 16,
       frameHeight: 16,
     });
+
+    // button test link:
+    this.load.image("button", "assets/enter.png");
   }
 
   create() {
-    // this.background = this.add.image(0, 0, "background").setOrigin(0, 0);
-
     // MAP :
     const map = this.add.tilemap("world");
     const tileset = map.addTilesetImage("overworld_proper", "overworld_proper");
-
     const collision = map
       .createStaticLayer("Collision", tileset, 0, 0)
       .setScale(2);
@@ -27,20 +31,60 @@ class World {
     const buildings = map
       .createStaticLayer("Building", tileset, 0, 0)
       .setScale(2);
-
     collision.setCollisionBetween(0, 2);
-
     buildings.setDepth(0);
     grass.setDepth(0);
     path.setDepth(0);
     collision.setDepth(0);
 
-    console.log(this);
     // PLAYER :
-    this.player = this.physics.add.sprite(32, 656, "hulk").setScale(2);
+    this.player = this.physics.add.sprite(176, 624, "hulk").setScale(2);
     this.cursors = this.input.keyboard.createCursorKeys();
     this.player.body.collideWorldBounds = true;
     this.physics.add.collider(this.player, collision);
+
+    console.log(this.cursors);
+
+    // Static EVENT GHOST Sprite:
+    const eventGhost = this.physics.add.sprite(400, 496, "hulk").setScale(2);
+    eventGhost.setVisible(false);
+
+    // Create Scene button:
+    const button = this.add.image(0, 0, "button");
+    const container = this.add.container(400, 450, [button]);
+    container.setSize(button.width, button.height).setScale(0.3);
+    container.setInteractive();
+    container.on("pointerup", function () {
+      document.getElementById("scene-1").click();
+    });
+    container.setVisible(false);
+
+    // do something
+
+    this.physics.add.overlap(
+      this.player,
+      eventGhost,
+      () => {
+        if (
+          this.player.x === 400 &&
+          this.player.y > 480 &&
+          this.player.y < 500
+        ) {
+          container.setVisible(true);
+        } else {
+          container.setVisible(false);
+        }
+        // if (container.setVisible(true)) {
+        //   document.body.onkeyup = function (e) {
+        //     if (e.key === 32) {
+        //       document.getElementById("scene-1").click();
+        //     }
+        //   };
+        // }
+      },
+      null,
+      this
+    );
   }
 
   update() {
@@ -56,6 +100,13 @@ class World {
     } else {
       this.player.body.setVelocity(0);
     }
+
+    // Console logging the player position x and y:
+    // if (this.tempx !== this.player.x || this.tempy !== this.player.y) {
+    //   this.tempx = this.player.x;
+    //   this.tempy = this.player.y;
+    //   console.log("xy: ", this.tempx, this.tempy);
+    // }
   }
 }
 export default World;
