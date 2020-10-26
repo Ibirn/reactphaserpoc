@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [counter, setCounter] = useState(0);
+
   return (
     <div>
       <nav>
+        <button onClick={() => setCounter((prev) => prev + 1)}>
+          {counter}
+        </button>
         <ul>
           <li>
-            <a href="/scene1">Sc1</a>
+            <Link to="/scene1">Sc1</Link>
           </li>
           <li>
-            <a id="scene-1" href="/scene2">
+            <Link id="nextscene" to="/scene2">
               Sc2
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/scene3">Sc3</a>
+            <Link to="/scene3">Sc3</Link>
           </li>
         </ul>
       </nav>

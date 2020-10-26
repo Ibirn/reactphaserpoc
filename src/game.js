@@ -22,7 +22,9 @@ const SapphireGame = (props) => {
     new Phaser.Game(config);
   }, [props.scene]);
 
-  return <div id="myDIV"></div>;
+  return (
+    <div id="myDIV" style={{ display: props.show ? "block" : "none" }}></div>
+  );
 };
 
 export default SapphireGame;

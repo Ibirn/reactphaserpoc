@@ -8,15 +8,15 @@ class World extends Phaser.Scene {
   }
 
   preload() {
-    this.load.tilemapTiledJSON("world", "assets/sapphire.json");
-    this.load.image("overworld_proper", "assets/overworld_proper.png");
-    this.load.spritesheet("hulk", "assets/sumoHulk_spriteSheet.png", {
+    this.load.tilemapTiledJSON("world", "/assets/sapphire.json");
+    this.load.image("overworld_proper", "/assets/overworld_proper.png");
+    this.load.spritesheet("hulk", "/assets/sumoHulk_spriteSheet.png", {
       frameWidth: 16,
       frameHeight: 16,
     });
 
     // enter button test link:
-    this.load.image("button", "assets/enter.png");
+    this.load.image("button", "/assets/enter.png");
   }
 
   create() {
@@ -67,7 +67,8 @@ class World extends Phaser.Scene {
         ) {
           container.setVisible(true);
           if (this.cursors.space.isDown) {
-            document.getElementById("scene-1").click();
+            window.advanceScene();
+            //document.getElementById("nextscene").click();
           }
         } else {
           container.setVisible(false);
