@@ -68,7 +68,6 @@ class World extends Phaser.Scene {
           container.setVisible(true);
           if (this.cursors.space.isDown) {
             window.advanceScene();
-            //document.getElementById("nextscene").click();
           }
         } else {
           container.setVisible(false);

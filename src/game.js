@@ -15,7 +15,7 @@ const SapphireGame = (props) => {
         },
       },
       scene: [props.scene],
-      parent: "myDIV",
+      parent: "game-container",
       pixelArt: true,
     };
 
@@ -23,10 +23,11 @@ const SapphireGame = (props) => {
   }, [props.scene]);
 
   return (
-    <div id="myDIV" style={{ display: props.show ? "block" : "none" }}></div>
+    <div
+      id="game-container"
+      style={{ display: props.show ? "block" : "none" }}
+    ></div>
   );
 };
 
 export default SapphireGame;
-
-// figure out why it wants to move horizontal FOREVER?
