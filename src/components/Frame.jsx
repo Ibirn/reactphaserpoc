@@ -7,6 +7,7 @@ import Right from "./Right";
 import Top from "./Top";
 import Bottom from "./Bottom";
 import Scene1 from "./Scene1"; 
+import Navbar from "./Navbar";
 
 // import useWalk from "../hooks/useWalk";
 const FrameDiv = styled.div`
@@ -33,6 +34,7 @@ const Frame = () => {
 
   return (
     <FrameDiv>
+      {/* <Navbar/> */}
       <Top />
       <Left />
       <Scene1/> 

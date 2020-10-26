@@ -20,10 +20,10 @@ function App() {
           {counter}
         </button>
         <Frame/>
-        {/* <Navbar /> */}
-        {/* <Route path="/scene1" component={Scene1} />
+        <Navbar />
+        <Route path="/scene1" component={Scene1} />
         <Route path="/scene2" component={Scene2} />
-        <Route path="/scene3" component={Scene3} /> */}
+        <Route path="/scene3" component={Scene3} />
       </div>
     </BrowserRouter>
   );
