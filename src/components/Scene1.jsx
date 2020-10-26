@@ -17,7 +17,7 @@ const MapDiv = styled.div`
 const Scene1 = () => {
   return (
     <MapDiv>
-      <p>THIS IS SCENE 1 Y'ALL</p>
+      {/* <p>THIS IS SCENE 1 Y'ALL</p> */}
       <SapphireGame scene={World} />
     </MapDiv>
   );
